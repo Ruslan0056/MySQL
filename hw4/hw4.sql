@@ -12,3 +12,9 @@ from profiles as p
 join likes as l on l.user_id = p.user_id
 group by gender 
 limit 1;
+
+-- 3. Вывести всех пользователей, которые не отправляли сообщения.
+select u.id as 'No messages from ID'
+from users as u
+where not exists (select from_user_id from messages as m
+where u.id = m.from_user_id);
